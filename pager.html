@@ -304,19 +304,22 @@ a:hover .g-icon-arr-down{background-position:-1px -48px}
 			var me = this,
 				container = this.$container;
 
-			container.delegate(".g-page-pre", "click.hsPager", function(){
+			container.delegate(".g-page-pre", "click.hsPager", function(e){
+				e.preventDefault();
 				if(currPage <= 1) return ;
 				currPage --;
 				me.createHtml(currPage,totalPage,wrapPage);
 				callback(currPage);
 			});
-			container.delegate(".g-page-nxt", "click.hsPager", function() {
+			container.delegate(".g-page-nxt", "click.hsPager", function(e) {
+				e.preventDefault();
 				if(currPage >= totalPage) return ;
 				currPage++;
 				me.createHtml(currPage,totalPage,wrapPage);
 				callback(currPage);
 			});
-			container.delegate("a[data-page]", "click.hsPager", function() {
+			container.delegate("a[data-page]", "click.hsPager", function(e) {
+				e.preventDefault();
 				currPage = parseInt($(this).attr('data-page'));
 				me.createHtml(currPage,totalPage,wrapPage);
 				callback(currPage);
